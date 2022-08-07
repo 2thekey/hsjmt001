@@ -37,6 +37,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   get: ^4.6.5
+  flutter_launcher_icons: ^0.10.0
+
+flutter_icons:
+  android: "my_icon"
+  ios: true
+  image_path: "assets/image/hsjmt_icon.png"
 
 dev_dependencies:
   flutter_test:
@@ -76,10 +82,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: DongleRegular
+      fonts:
+        - asset: assets/font/Dongle-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

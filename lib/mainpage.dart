@@ -48,7 +48,15 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('메인페이지'),),
+      appBar: AppBar(
+        title: const Text('홍성JMT (맛있는 한끼면 충분해~)',
+                           style: TextStyle(//fontFamily: 'DongleRegular',
+                           fontSize: 30,
+                           color: Colors.black),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
