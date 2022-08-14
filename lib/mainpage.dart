@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hsjmt001/mainpages/homescreen.dart';
 import 'package:hsjmt001/mainpages/mylikescreen.dart';
 import 'package:hsjmt001/mainpages/myscreen.dart';
 import 'package:hsjmt001/mainpages/showgridscreen.dart';
+import 'package:hsjmt001/mainpages/testpage.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -49,10 +51,15 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('홍성JMT (맛있는 한끼면 충분해~)',
-                           style: TextStyle(//fontFamily: 'DongleRegular',
-                           fontSize: 30,
-                           color: Colors.black),
+        title: GestureDetector(
+          onTap: (){
+            Get.to(TestPage());
+          },
+          child: const Text('홍성JMT (맛있는 한끼면 충분해~)',
+                             style: TextStyle(//fontFamily: 'DongleRegular',
+                             fontSize: 30,
+                             color: Colors.black),
+          ),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

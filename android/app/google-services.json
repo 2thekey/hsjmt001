@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "403603142681",
+    "project_id": "hongseongjmt",
+    "storage_bucket": "hongseongjmt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403603142681:android:99280872d0a3d681829288",
+        "android_client_info": {
+          "package_name": "com.example.hsjmt001"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403603142681-2c92sqajb1jgl9s4sti1v62rcsj8cvo4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAf0qbBmKPKkCA6_fMc3lmoeDgQITRUwEs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "403603142681-2c92sqajb1jgl9s4sti1v62rcsj8cvo4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
