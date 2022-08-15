@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'makepostpage.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({Key? key}) : super(key: key);
@@ -33,7 +35,16 @@ class _TestPageState extends State<TestPage> {
 
                   },
                   child: Text('데이터 불러오기'),
-              )
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Get.to(MakePostPage());
+                  },
+
+
+
+                child: Text('포스팅 올리기 페이지로'),
+              ),
 
             ],
           ),
