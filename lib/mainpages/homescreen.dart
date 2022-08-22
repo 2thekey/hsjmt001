@@ -13,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Stack(
+      alignment: Alignment.bottomRight,
       children:[
         Container(
         child: ListView.separated(

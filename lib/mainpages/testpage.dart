@@ -25,12 +25,18 @@ class _TestPageState extends State<TestPage> {
           child: Column(
             children: [
               SizedBox(height: 100,),
-              Text(name),
+
+              SizedBox(
+                height: 300,
+                child: Image.network(name,fit: BoxFit.cover,),
+              ),
+
               ElevatedButton(
                   onPressed: () async{
                     DocumentSnapshot test1docData=await firestore.collection('Test').doc('test1doc').get();
                     setState(() {
-                      name=test1docData['name'];
+                      name=test1docData['foodimage'];
+
                     });
 
                   },
