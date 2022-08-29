@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hsjmt001/mainpages/showgridscreen.dart';
 import 'package:scrolling_page_indicator/scrolling_page_indicator.dart';
 
 import '../mainpages/testpage.dart';
@@ -25,11 +26,11 @@ class _PostCardState extends State<PostCard> {
   final PageController _controller=PageController();
 
   List<String> testImageList=[
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwKB0Bn7nH1l3gtrBPRI2qUcSxe3lg3BmNzg&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRo_cMkXvPUHKQgz3mmYkWOiirDpt17c4TvNA&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwrPAUEopuEiI_Rwk5O74g41UaIoiXRjbFfg&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4fMzU-h2mL52hCfHysSAeO5g20VdamdHmPw&usqp=CAU',
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBgZUFEWw5Y5XE5Q7h1XIB16wwFyboHqlbCQ&usqp=CAU'
+    'https://postfiles.pstatic.net/MjAyMjA0MTdfMTY2/MDAxNjUwMTcyNTU2OTAw.yjXubyQIX65bxu_dq26oA0FlBMUR9-I55A8DZmGLepsg.1G7NZaRkYZEkemchUKekaX2aW8ChiT1WdMbD9nHayCIg.GIF.2thekey/IMG_7018.gif?type=w966',
+    'https://postfiles.pstatic.net/MjAyMjA0MTFfMjQ4/MDAxNjQ5NjY0NTA0MTU3.dGK7DLJh605itz-P23Lg650hlEM4uhNb619rcUg1gfsg.J1omDiPguQQ_RzL9VpbLe-OqPLTkHjFAEVU4MgRDwvIg.JPEG.2thekey/IMG_6962.jpg?type=w966',
+    'https://postfiles.pstatic.net/MjAyMjA2MDNfMjIw/MDAxNjU0MjQyMjE1NTMy.XLNArN9G3Ol4T3YGye3faS-gUjfKT7zOQt1i5f_9S2sg.k_fagFqD5GaQWHkWGj7jxEDjFDYuNfM8u9vsqY9FowIg.GIF.2thekey/IMG_7500.gif?type=w966',
+    'https://postfiles.pstatic.net/MjAyMjA2MTFfMjA1/MDAxNjU0OTE4OTM3MzU1.JZ-eFw2fK9b8l4v07k3fNs5zKdadbBh4DAGjdxqxedkg.LQ91IJiWisfY0jz3f139DndKmue9xsLA9HwKzCoNLRsg.GIF.2thekey/IMG_7526.gif?type=w966',
+    'https://postfiles.pstatic.net/MjAyMjA0MjZfMTMz/MDAxNjUwOTQ2NTg2Mjgy.9E2F-zPX9ScWD0HUa7YXNz3VwHRz3qixq1pncOGG488g.HaxkBc1hFjerIDvBselpA_W-g-hreP5Ws0FmXJ9ZFusg.JPEG.2thekey/IMG_7091.jpg?type=w966'
   ];
 
   List testint=[5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
@@ -82,9 +83,11 @@ class _PostCardState extends State<PostCard> {
                   itemBuilder: (BuildContext context, int index){
                     return GestureDetector(
                       onTap: (){
-                        Get.to(TestPage());
+                        //Get.to(TestPage());
+                        Get.to(() => ShowGridScreen());
                       },
                       child: Container(
+                        height: 300,
 
                         child: Image.network(testImageList[Random().nextInt(5)],fit: BoxFit.cover,),
                       ),

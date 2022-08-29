@@ -3,11 +3,23 @@ import 'package:get/get.dart';
 import 'package:hsjmt001/landingpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-void main()async {
+// void main()async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp().catchError(onError);
+//   runApp(MyApp());
+// }
+
+bool isFirebaseReady = true;
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp().catchError((e) {
+    isFirebaseReady = false;
+    //print(e);
+  });
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hsjmt001/mainpages/homemenu.dart';
 import 'package:hsjmt001/mainpages/homescreen.dart';
 import 'package:hsjmt001/mainpages/mylikescreen.dart';
 import 'package:hsjmt001/mainpages/myscreen.dart';
@@ -17,16 +18,17 @@ class _MainPageState extends State<MainPage> {
 
   int _selectedIndex=0;
   List pages=[
+    const HomeMenu(),
     const HomeScreen(),
     const ShowGridScreen(),
     const MyLikeScreen(),
-    const MyScreen(),
+
   ];
 
   List<BottomNavigationBarItem> bottomItems=[
     const BottomNavigationBarItem(
       label: '1번',
-      icon: Icon(Icons.favorite),
+      icon: Icon(Icons.home),
     ),
 
     const BottomNavigationBarItem(
@@ -51,15 +53,10 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: GestureDetector(
-          onTap: (){
-            Get.to(TestPage());
-          },
-          child: const Text('홍성JMT (맛있는 한끼면 충분해~)',
-                             style: TextStyle(//fontFamily: 'DongleRegular',
-                             fontSize: 30,
-                             color: Colors.black),
-          ),
+        title: const Text('홍성JMT (맛있는 한끼면 충분해~)',
+                           style: TextStyle(//fontFamily: 'DongleRegular',
+                           fontSize: 30,
+                           color: Colors.black),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

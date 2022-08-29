@@ -14,12 +14,13 @@ class _TestPageState extends State<TestPage> {
 
   FirebaseFirestore firestore=FirebaseFirestore.instance;
 
-  var name='??';
+  var name='https://d12zq4w4guyljn.cloudfront.net/300_300_20200201015101139_photo_86f87df7782f.jpg';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('테스트페이지'),),
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Container(
           child: Column(

@@ -15,7 +15,8 @@ class _LandingPageState extends State<LandingPage> {
 
   void initState() {
     Timer(const Duration(seconds: 5),(){
-      Get.offAll(const MainPage());
+      //Get.offAll(const MainPage());
+      Get.offAll(() => const MainPage());
     });
 
     // TODO: implement initState
