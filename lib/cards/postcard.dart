@@ -63,7 +63,7 @@ class _PostCardState extends State<PostCard> {
                       backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI4LgzR-Kqd2jboRf8A-SSqwGSewbkOlRspA&usqp=CAU'),
                     ),
                     SizedBox(width: 5,),
-                    Text('사슴벌레',style: TextStyle(//fontFamily: 'DongleRegular',
+                    Text('사슴+벌레',style: TextStyle(//fontFamily: 'DongleRegular',
                         fontSize: 25,
                         color: Colors.black),),
                   ],
