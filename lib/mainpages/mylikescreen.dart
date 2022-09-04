@@ -57,7 +57,7 @@ class _MyLikeScreenState extends State<MyLikeScreen> {
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
-              title: Text('내장탕'),      //animalData[index].name),
+              title: Text('내장탕~'),      //animalData[index].name),
               leading: SizedBox(
                 height: 50,
                 width: 50,
