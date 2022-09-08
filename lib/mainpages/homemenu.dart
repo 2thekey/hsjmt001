@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hsjmt001/mainpages/cookie_page.dart';
 
 class HomeMenu extends StatefulWidget {
   const HomeMenu({Key? key}) : super(key: key);
@@ -29,13 +31,28 @@ class _HomeMenuState extends State<HomeMenu> {
 
               ),
 
-              Column(
-                children: [
-                  Text("#해장 필요해?",
-                    style: TextStyle(color: Colors.lightBlue, fontSize: 30),),
-                ],
+              // Column(
+              //   children: [
+              //     Text("#해장 필요해?",
+              //       style: TextStyle(color: Colors.lightBlue, fontSize: 30),),
+              //   ],
+              //
+              // ),
 
-              ),
+      GestureDetector(
+        onTap: (){
+          //Get.to(TestPage());
+          Get.to(() => CookiePage());
+        },
+        child: Column(
+          children: [
+            Text("#해장 필요해?",
+              style: TextStyle(color: Colors.lightBlue, fontSize: 30),),
+          ],
+        )
+
+      ),
+
             ],
           ),
 
