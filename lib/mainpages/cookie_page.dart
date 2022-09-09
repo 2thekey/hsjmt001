@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hsjmt001/mainpages/cookie_detail.dart';
+import '../mainpage.dart';
+import 'bottom_bar.dart';
 import 'showgridscreen.dart';
 
 class CookiePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFFCFAF8),
+
+      appBar: AppBar(
+        title: const Text('홍성JMT (맛있는 한끼면 충분해~)',
+          style: TextStyle(//fontFamily: 'DongleRegular',
+              fontSize: 30,
+              color: Colors.black),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.white,
+      ),
+
+
       body: ListView(
         children: <Widget>[
           SizedBox(height: 15.0),
@@ -19,7 +33,7 @@ class CookiePage extends StatelessWidget {
                 crossAxisCount: 2,
                 primary: false,
                 crossAxisSpacing: 10.0,
-                mainAxisSpacing: 15.0,
+                mainAxisSpacing: 10.0,
                 childAspectRatio: 0.8,
                 children: <Widget>[
                   _buildCard('매운짜장면', '\￦9,000', 'https://postfiles.pstatic.net/MjAyMjA0MTZfMTEz/MDAxNjUwMTA0MTc1OTUx.Tympyh5FpDESr49ThcukdXKBzEpZhsbIoSg-jmpts30g.G_4H8p42bLJFZ6K-hk0NPajB5Y_WnO4JX2k23FUs7h4g.JPEG.2thekey/IMG_7011.jpg?type=w966',
@@ -32,11 +46,33 @@ class CookiePage extends StatelessWidget {
                       false, false, context),
                   _buildCard('내장수육', '\￦6,000', 'https://recipe1.ezmember.co.kr/cache/rpt/2019/10/11/412cb0133ea7338ee3e51498bf1d5859.jpg.jpeg',
                       false, false, context),
+                  // _buildCard('내장수육', '\￦6,000', 'https://recipe1.ezmember.co.kr/cache/rpt/2019/10/11/412cb0133ea7338ee3e51498bf1d5859.jpg.jpeg',
+                  //     false, false, context),
+                  SizedBox(),  //상품이 홀수 일때 그리드뷰 빈자리 채우기 필요
+                  SizedBox()
                 ],
-              )),
+              )
+          ),
           SizedBox(height: 15.0)
         ],
+
       ),
+
+
+      //하단플로팅 버튼 시작
+
+      floatingActionButton: FloatingActionButton(onPressed: () {
+
+        Get.offAll(() => const MainPage());
+      },
+        backgroundColor: Color(0xFFEF7532),
+        child: Icon(Icons.home),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar: BottomBar(),
+
+      //하단플로팅 버튼 끝
+
     );
   }
 
@@ -47,7 +83,13 @@ class CookiePage extends StatelessWidget {
         child: InkWell(
             onTap: () {
 
-              Get.to(() => ShowGridScreen());
+              //Get.to(() => CookieDetail(imgPath,price,name));
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => CookieDetail(
+                      assetPath: imgPath,
+                      cookieprice:price,
+                      cookiename: name
+                  )));
 
               // Navigator.of(context).push(
               //     MaterialPageRoute(builder: (context) => CookieDetail(
@@ -87,7 +129,7 @@ class CookiePage extends StatelessWidget {
                       tag: imgPath,
                       child: Container(
 
-                          height: 150.0,
+                          height: 120.0,
                           width: 150.0,
                           decoration: BoxDecoration(
                             //color: Colors.red,
@@ -96,17 +138,18 @@ class CookiePage extends StatelessWidget {
                                   fit: BoxFit.contain)))),
                   //SizedBox(height: 7.0),
 
-                  Text(price,
+
+
+                      Text(price,
                       style: TextStyle(
                           color: Color(0xFFCC8053),
-                        // fontStyle: FontStyle.normal,
-                          fontFamily: 'DongleRegular',
+                          //fontFamily: 'DongleRegular',
                           fontSize: 25.0)),
                   Text(name,
                       style: TextStyle(
                           color: Color(0xFF575E67),
                           fontFamily: 'DongleRegular',
-                          fontSize: 30.0)),
+                          fontSize: 25.0)),
                   // Padding(
                   //     padding: EdgeInsets.all(8.0),
                   //     child: Container(color: Color(0xFFEBEBEB), height: 1.0)),
@@ -137,6 +180,11 @@ class CookiePage extends StatelessWidget {
                   //                 color: Color(0xFFD17E50), size: 12.0),
                   //           ]
                   //         ]))
-                ]))));
+                ]
+                )
+            ),
+
+        )
+    );
   }
 }
