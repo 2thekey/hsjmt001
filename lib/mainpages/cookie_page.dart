@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hsjmt001/mainpages/cookie_detail.dart';
+import 'package:hsjmt001/mainpages/cookie_home.dart';
 import '../mainpage.dart';
 import 'bottom_bar.dart';
 import 'showgridscreen.dart';
@@ -16,6 +17,13 @@ class CookiePage extends StatelessWidget {
               fontSize: 30,
               color: Colors.black),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search, color: Color(0xFF545D68)),
+            onPressed: () {},
+          ),
+        ],
+
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
@@ -63,7 +71,7 @@ class CookiePage extends StatelessWidget {
 
       floatingActionButton: FloatingActionButton(onPressed: () {
 
-        Get.offAll(() => const MainPage());
+        Get.offAll(() => CookieHome());
       },
         backgroundColor: Color(0xFFEF7532),
         child: Icon(Icons.home),

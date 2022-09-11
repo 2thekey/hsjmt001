@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hsjmt001/mainpages/cookie_home.dart';
 
 import '../mainpage.dart';
 import 'bottom_bar.dart';
@@ -57,87 +58,235 @@ class CookieDetail extends StatelessWidget {
       // ),
 
       body: ListView(
+
           children: [
-            SizedBox(height: 15.0),
+            //SizedBox(height: 15.0),
+
+                // Padding(
+                //   padding: EdgeInsets.only(left: 20.0),
+                //   child: Text(
+                //       'JMT 추천 : 15',
+                //       style: TextStyle(
+                //         //fontFamily: 'Varela',
+                //           fontSize: 32.0,
+                //           fontWeight: FontWeight.bold,
+                //           color: Color(0xFFF17532))
+                //   ),
+                // ),
+
+
+            //SizedBox(height: 15.0),
+
+            // Hero(
+            //     tag: assetPath,
+            //     child: Image.network(assetPath,
+            //         height: 250.0,
+            //         width: 200.0,
+            //         fit: BoxFit.contain
+            //     )
+            // ),
+
             Padding(
-              padding: EdgeInsets.only(left: 20.0),
-              child: Text(
-                  cookiename,
-                  style: TextStyle(
-                      //fontFamily: 'Varela',
-                      fontSize: 42.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFF17532))
-              ),
+              padding: EdgeInsets.all(15.0),
+              child: Stack(
+                children: [
+                  AspectRatio(
+                    aspectRatio: 3/2,
+
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Image.network(assetPath,fit: BoxFit.cover,),
+                    ),
+                  ),
+                  // Container(
+                  //   alignment: Alignment.topLeft,
+                  //   padding: EdgeInsets.only(left: 10),
+                  //   //height: 100,
+                  //   width: 150,
+                  //   color: Colors.transparent,
+                  //   child: Image.asset('assets/image/jmt1.png',fit: BoxFit.contain,),
+                  // )
+                ],
+              )
             ),
-            SizedBox(height: 15.0),
-            Hero(
-                tag: assetPath,
-                child: Image.network(assetPath,
-                    height: 150.0,
-                    width: 100.0,
-                    fit: BoxFit.contain
-                )
-            ),
-            SizedBox(height: 20.0),
+
+
+            //SizedBox(height: 20.0),
             Center(
-              child: Text(cookieprice,
-                  style: TextStyle(
-                      //fontFamily: 'Varela',
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFF17532))),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(cookiename,
+                      style: TextStyle(
+                        //fontFamily: 'Varela',
+                          fontSize: 45.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFFF17532))),
+                  // SizedBox(width: 50,),
+                  // Icon(Icons.favorite,color: Colors.red,),
+                ],
+              )
             ),
-            SizedBox(height: 10.0),
+            //SizedBox(height: 10.0),
             Center(
-              child: Text(cookiename,
+              child: Text('"주민과 학생 모두가 인정하는 홍성읍의 오래된 맛집"',
                   style: TextStyle(
                       color: Color(0xFF575E67),
                       //fontFamily: 'Varela',
-                      fontSize: 24.0)),
+                      fontSize: 26.0)),
             ),
-            SizedBox(height: 20.0),
+            // IconButton(
+            //   icon: Icon(Icons.favorite, color: Color(0xFFF17532)),
+            //   onPressed: () {},
+            // ),
+           // SizedBox(height: 20.0),
             Center(
               child: Container(
                 width: MediaQuery.of(context).size.width - 50.0,
-                child: Text('Cold, creamy ice cream sandwiched between delicious deluxe cookies. Pick your favorite deluxe cookies and ice cream flavor.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: 'Varela',
-                        fontSize: 16.0,
-                        color: Color(0xFFB4B8B9))
-                ),
+                child: Row(
+                    children: [
+                          Column(
+
+                            children: [
+
+                              Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text('위치 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text('홍성읍 아문길 27 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                    ],
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+
+                      Column(
+                        children: [
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text('위치2 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('홍성읍 아문길 272 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+
+                      Column(
+                        children: [
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text('위치3 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('홍성읍 아문길 273 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+
+                      Column(
+                        children: [
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Text('위치4 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text('홍성읍 아문길 274 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                ],
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+
+
+
+
+
+
+
+
+                      // Row(
+                      //   children: [
+                      //     Text('위치 : 홍성읍 아문길 27', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                      //
+                      //   ],
+                      // ),
+                      // Row(
+                      //   children: [
+                      //     Text('위치 : 홍성읍 아문길 27', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                      //
+                      //   ],
+                      // ),
+                      // Row(
+                      //   children: [
+                      //     Text('위치 : 홍성읍 아문길 27', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                      //
+                      //   ],
+                      // ),
+
+                    ],
+                  ),
+
               ),
             ),
             SizedBox(height: 20.0),
-            // Center(
-            //     child: Container(
-            //         width: MediaQuery.of(context).size.width - 50.0,
-            //         height: 50.0,
-            //         decoration: BoxDecoration(
-            //             borderRadius: BorderRadius.circular(25.0),
-            //             color: Color(0xFFF17532)
-            //         ),
-            //         // child: Center(
-            //         //     child: Text('Add to cart',
-            //         //       style: TextStyle(
-            //         //           fontFamily: 'Varela',
-            //         //           fontSize: 14.0,
-            //         //           fontWeight: FontWeight.bold,
-            //         //           color: Colors.white
-            //         //       ),
-            //         //     )
-            //         // )
-            //     )
-            // )
+            Center(
+                child: Container(
+                    width: MediaQuery.of(context).size.width - 50.0,
+                    height: 50.0,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25.0),
+                        color: Color(0xFFF17532)
+                    ),
+                    child: Center(
+                        child: Text('다른  '+ cookiename + ' 추천하기',
+                          style: TextStyle(
+                              fontFamily: 'Varela',
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white
+                          ),
+                        )
+                    )
+                )
+            ),
+
+            SizedBox(height: 150,)
           ]
       ),
+
+
 
 //하단플로팅 버튼 시작
 
       floatingActionButton: FloatingActionButton(onPressed: () {
 
-        Get.offAll(() => const MainPage());
+        Get.offAll(() => CookieHome());
       },
         backgroundColor: Color(0xFFEF7532),
         child: Icon(Icons.home),

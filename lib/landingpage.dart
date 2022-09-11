@@ -2,6 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hsjmt001/mainpage.dart';
+import 'package:hsjmt001/mainpages/cookie_home.dart';
+
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -16,7 +18,7 @@ class _LandingPageState extends State<LandingPage> {
   void initState() {
     Timer(const Duration(seconds: 5),(){
       //Get.offAll(const MainPage());
-      Get.offAll(() => const MainPage());
+      Get.offAll(() => CookieHome());
     });
 
     // TODO: implement initState
