@@ -145,86 +145,102 @@ class CookieDetail extends StatelessWidget {
                 width: MediaQuery.of(context).size.width - 50.0,
                 child: Row(
                     children: [
-                          Column(
+                          Expanded(
+                            flex: 1,
+                            child: Column(
 
-                            children: [
+                              children: [
 
-                              Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text('위치 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text('홍성읍 아문길 27 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
-                                    ],
-                                  ),
-                                ],
-                              )
-                            ],
+
+                                    Container(
+                                      height: 30,
+                                      color: Colors.blue,
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text('위 치 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 25.0, color: Color(0xFFB4B8B9), ) ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 90,
+                                      color: Colors.red,
+                                      child: Row(
+                                        children: [
+                                          Expanded(child:
+                                          Text(' 충남 홍성군 홍성읍 아문길 27 홍흥집', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),)
+
+                                        ],
+                                      ),
+                                    ),
+
+                              ],
+                            ),
                           ),
 
-                      Column(
-                        children: [
-                          Column(
-                            children: [
-                              Row(
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+
+                          children: [
+
+
+                            Container(
+                              height: 30,
+                              color: Colors.blue,
+                              child: Row(
                                 children: [
-                                  Text('위치2 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                  Text('위치 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
                                 ],
                               ),
-                              Row(
+                            ),
+                            Container(
+                              height: 90,
+                              color: Colors.red,
+                              child: Row(
                                 children: [
-                                  Text('홍성읍 아문길 272 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                  Expanded(child:
+                                  Text('충남 홍성군 홍성읍 아문길 27 홍흥집', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),)
+
                                 ],
                               ),
-                            ],
-                          )
-                        ],
+                            ),
+
+                          ],
+                        ),
                       ),
 
-                      Column(
-                        children: [
-                          Column(
-                            children: [
-                              Row(
+                      Expanded(
+                        flex: 1,
+                        child: Column(
+
+                          children: [
+
+
+                            Container(
+                              height: 30,
+                              color: Colors.blue,
+                              child: Row(
                                 children: [
-                                  Text('위치3 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                  Text('위치 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
                                 ],
                               ),
-                              Row(
+                            ),
+                            Container(
+                              height: 90,
+                              color: Colors.red,
+                              child: Row(
                                 children: [
-                                  Text('홍성읍 아문길 273 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
+                                  Expanded(child:
+                                  Text(' 충남 홍성군 홍성읍 아문길 27 홍흥집', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),)
+
                                 ],
                               ),
-                            ],
-                          )
-                        ],
+                            ),
+
+                          ],
+                        ),
                       ),
-
-                      Column(
-                        children: [
-                          Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text('위치4 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text('홍성읍 아문길 274 ', textAlign: TextAlign.start, style: TextStyle( fontSize: 16.0, color: Color(0xFFB4B8B9)) ),
-                                ],
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-
-
-
 
 
 
