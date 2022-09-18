@@ -19,6 +19,11 @@ class CookieDetail extends StatefulWidget {
 class _CookieDetailState extends State<CookieDetail> {
   //CookieDetail(assetPath, cookieprice, cookiename);
   var jmt_like=20;
+  List ajmt_like=[50,40,30];
+  TextEditingController txt_location=TextEditingController();
+  TextEditingController txt_shopname=TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -373,7 +378,7 @@ class _CookieDetailState extends State<CookieDetail> {
                         height: 50.0,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25.0),
-                            color: Color(0xFFF17532)
+                            color: Color(0xFFF17532),
                         ),
                         child: Center(
                             child: Text('이용자들이 추천한 또 다른 "'+ widget.cookiename+'" 맛집',
@@ -388,16 +393,6 @@ class _CookieDetailState extends State<CookieDetail> {
                     )
                 ),
 
-                // Container(
-                //   child:
-                  // ListView.builder(
-                  //     scrollDirection: Axis.vertical,
-                  //     shrinkWrap: true,
-                  //     itemCount: 100,
-                  //     itemBuilder: (BuildContext ctx, int idx) {
-                  //       return Text('Content Number ${idx}');
-                  //     }
-                  // )
 
                   ListView.builder(   //또 다른 맛집 리스트
                     scrollDirection: Axis.vertical,
@@ -406,11 +401,17 @@ class _CookieDetailState extends State<CookieDetail> {
                     itemBuilder: (context, index) {
                       return Card(
                         child: ListTile(
-                          title: Text('(홍성읍) 이비가짬뽕',style: TextStyle(
+                          tileColor: Colors.grey[500-(index * 100)],
+                          title: Text('(홍성읍)',style: TextStyle(
                               //fontFamily: 'Varela',
-                              fontSize: 25.0,
+                              fontSize: 18.0,
                               //fontWeight: FontWeight.bold,
                               color: Colors.black)), //animalData[index].name),
+                          subtitle: Text('이비가짬뽕',style: TextStyle(
+                          //fontFamily: 'Varela',
+                            fontSize: 23.0,
+                            //fontWeight: FontWeight.bold,
+                            color: Colors.black)), //animalData[index].name),,
                           leading: Container(
                             height: 50,
                             width: 70,
@@ -422,10 +423,10 @@ class _CookieDetailState extends State<CookieDetail> {
                               children: [
                                 //SizedBox(width: 20,),
                                 Icon(Icons.favorite,color: Colors.red,),
-                                Text('10255',//+jmt_like.toString(),
+                                Text(" "+ajmt_like[index].toString(),
                                     style: TextStyle(
                                       //fontFamily: 'Varela',
-                                        fontSize: 20.0,
+                                        fontSize: 25.0,
                                         //fontWeight: FontWeight.bold,
                                         color: Colors.red)),
 
@@ -434,40 +435,60 @@ class _CookieDetailState extends State<CookieDetail> {
                             ),
 
                           ),
-                          trailing: Container(
+                          trailing:
+                          Container(
                             height: 50,
                             width: 110,
                             //color: Colors.red,
                             child:
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Container(
-                                  height: 50,
-                                  //color: Colors.red,
-                                  child: Icon(Icons.thumb_up_alt_rounded,color: Colors.black,),
-                                ),
+                            InkWell(
+                              onTap: (){
 
-                                Container(
-                                  alignment: Alignment.bottomCenter,
-                                  height: 50,
-                                  //color: Colors.blue,
-                                  child:
-                                  Text('나도 추천',
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      duration: Duration(seconds: 1),
+                                      content:Container(
+                                        //width: 100,
+                                          height: 50.0,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(25.0),
+                                            color: Colors.pinkAccent,
+                                          ),
+                                          child: Center(
+                                            child: Text('이 맛집을 추천하였습니다.',textAlign: TextAlign.center,),
+                                          )
+                                      ),
+
+
+                                      backgroundColor: Colors.white,
+
+                                    )
+                                );
+
+                                setState(() {
+                                  ajmt_like[index]++;
+                                });
+
+                              },
+
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.thumb_up_alt_outlined,color: Colors.black,),
+
+                                  Text(' 좋아요~',
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic ,
                                           //fontFamily: 'Varela',
-                                          fontSize: 25.0,
+                                          fontSize: 22.0,
                                           //fontWeight: FontWeight.bold,
                                           color: Colors.black)),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                          onTap: (){
 
-                          },
                         ),
                       );
                     },
@@ -476,11 +497,97 @@ class _CookieDetailState extends State<CookieDetail> {
                 
               ],
 
+            ),//또다른 추천
+
+            SizedBox(height: 20,),
+
+            MaterialButton(
+
+              onPressed: (){
+
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text('새로운 "'+widget.cookiename+'" 맛집 등록하기',
+                            style: TextStyle(
+                            //color: Color(0xFF575E67),
+                            //fontFamily: 'Varela',
+                            fontSize: 33.0)),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              TextField(
+                                controller: txt_location,
+                                decoration: InputDecoration(hintText: '지역 입력(ex-홍성읍, 내포, 덕산면)',
+                                  hintStyle: TextStyle(fontSize: 25),
+                                  labelStyle: TextStyle(fontSize: 25),
+
+                                ),
+                              ),
+                              TextField(
+                                controller: txt_shopname,
+                                //keyboardType: TextInputType.number,
+                                decoration: InputDecoration(hintText: '식당이름 입력',hintStyle: TextStyle(fontSize: 25),),
+                              ),
+
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            child: Text('취    소',
+                                style: TextStyle(
+                                  //color: Color(0xFF575E67),
+                                  //fontFamily: 'Varela',
+                                    fontSize: 30.0)),
+                            onPressed: (){
+                              Navigator.pop(context);
+                            },
+                          ),
+                          ElevatedButton(
+                              child: Text('추천하기',
+                                  style: TextStyle(
+                                    //color: Color(0xFF575E67),
+                                    //fontFamily: 'Varela',
+                                      fontSize: 35.0)),
+                          onPressed: (){},)
+                        ],
+                      );
+                    }
+                );
+
+              },
+              color: Color(0xFFF17532),
+              shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20.0)),
+              child:
+              Row(
+
+                mainAxisAlignment: MainAxisAlignment.center,
+
+                children:  [
+
+                 // Icon(Icons.add_circle_outline),
+
+                  Text('내가 아는 "'+ widget.cookiename +'" 맛집 추가하기',
+
+                      style: TextStyle(
+                          fontSize: 30.0,
+                          color: Colors.white) ),
+
+                  Icon(Icons.touch_app_outlined,color: Colors.yellow,size: 50,),
+
+                ],
+
+              ),
+
             ),
 
             SizedBox(height: 150,)
           ]
       ),
+
+
 
 
 
