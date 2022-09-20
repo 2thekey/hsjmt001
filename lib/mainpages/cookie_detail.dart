@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hsjmt001/mainpages/cookie_home.dart';
@@ -5,9 +6,13 @@ import 'package:hsjmt001/mainpages/cookie_home.dart';
 import '../mainpage.dart';
 import 'bottom_bar.dart';
 
+FirebaseFirestore firestore=FirebaseFirestore.instance;
 
 class CookieDetail extends StatefulWidget {
   final assetPath,cookieprice,cookiename;
+
+  String jmt_location="";
+  String jmt_shopname="";
 
 
   CookieDetail({this.assetPath, this.cookieprice, this.cookiename});
@@ -509,26 +514,50 @@ class _CookieDetailState extends State<CookieDetail> {
                     context: context,
                     builder: (BuildContext context){
                       return AlertDialog(
+                        //titleTextStyle: TextStyle(fontSize: 25),
                         title: Text('새로운 "'+widget.cookiename+'" 맛집 등록하기',
                             style: TextStyle(
                             //color: Color(0xFF575E67),
                             //fontFamily: 'Varela',
-                            fontSize: 33.0)),
+                            fontSize: 28.0)),
                         content: SingleChildScrollView(
                           child: Column(
                             children: [
                               TextField(
-                                controller: txt_location,
-                                decoration: InputDecoration(hintText: '지역 입력(ex-홍성읍, 내포, 덕산면)',
-                                  hintStyle: TextStyle(fontSize: 25),
-                                  labelStyle: TextStyle(fontSize: 25),
 
+                                style: TextStyle(fontSize: 26),
+                                maxLines: 1,
+                                controller: txt_location,
+                                decoration: InputDecoration(hintText: '(ex-홍성읍, 내포, 덕산면)',
+                                  labelText: '지역 입력(ex-홍성읍, 내포, 덕산면)',
+                                  border: OutlineInputBorder(),
+                                  hintStyle: TextStyle(fontSize: 22),
+                                  labelStyle: TextStyle(fontSize: 22),
                                 ),
+                                onChanged: (value){
+                                  setState(() {
+                                    widget.jmt_location=value;
+                                  });
+                                },
                               ),
+                              SizedBox(height: 10,),
                               TextField(
+                                style: TextStyle(fontSize: 26),
+                                maxLines: 1,
                                 controller: txt_shopname,
                                 //keyboardType: TextInputType.number,
-                                decoration: InputDecoration(hintText: '식당이름 입력',hintStyle: TextStyle(fontSize: 25),),
+                                decoration: InputDecoration(hintText: '식당 이름 입력',
+                                  labelText: '식당 이름',
+                                  hintStyle: TextStyle(fontSize: 22),
+                                  border: OutlineInputBorder(),
+                                  //hintStyle: TextStyle(fontSize: 25),
+                                  labelStyle: TextStyle(fontSize: 22),
+                                ),
+                                onChanged: (value){
+                                  setState(() {
+                                    widget.jmt_shopname=value;
+                                  });
+                                },
                               ),
 
                             ],
@@ -551,7 +580,16 @@ class _CookieDetailState extends State<CookieDetail> {
                                     //color: Color(0xFF575E67),
                                     //fontFamily: 'Varela',
                                       fontSize: 35.0)),
-                          onPressed: (){},)
+                          onPressed: (){
+
+                            firestore.collection('Posts').doc().set({
+                              "jmt_location" : widget.jmt_location,
+                              "jmt_shopame" : widget.jmt_shopname,
+                            });
+
+
+
+                          },)
                         ],
                       );
                     }

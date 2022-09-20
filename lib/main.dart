@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hsjmt001/landingpage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -17,8 +18,10 @@ void main() async {
     isFirebaseReady = false;
     //print(e);
   });
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);  //화면세로고정
   runApp(MyApp());
 }
+
 
 
 class MyApp extends StatelessWidget {
