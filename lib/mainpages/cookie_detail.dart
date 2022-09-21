@@ -654,7 +654,7 @@ class _CookieDetailState extends State<CookieDetail> {
                               "jmt_shopame" : widget.jmt_shopname,
                             });
 
-                            jmtToast('추천하였습니다. 관리자 확인후 등록예정');
+                            jmtToast('저장하였습니다. 관리자 확인 후\n 등록여부를 결정하겠습니다.');
 
                             Navigator.pop(context);
 
