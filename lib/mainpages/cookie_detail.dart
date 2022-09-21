@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hsjmt001/mainpages/cookie_home.dart';
 
@@ -25,8 +27,7 @@ class _CookieDetailState extends State<CookieDetail> {
   //CookieDetail(assetPath, cookieprice, cookiename);
   var jmt_like=20;
   List ajmt_like=[50,40,30];
-  TextEditingController txt_location=TextEditingController();
-  TextEditingController txt_shopname=TextEditingController();
+
 
 
   @override
@@ -133,7 +134,7 @@ class _CookieDetailState extends State<CookieDetail> {
                       style: TextStyle(
                         //color: Color(0xFF575E67),
                         //fontFamily: 'Varela',
-                          fontSize: 30.0)),
+                          fontSize: 28.0)),
                 )
             ),//메뉴코멘트
             //SizedBox(height: 20.0),
@@ -178,26 +179,28 @@ class _CookieDetailState extends State<CookieDetail> {
                   Expanded(
                     child: InkWell(
                       onTap: () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                             SnackBar(
-                              duration: Duration(seconds: 1),
-                              content:Container(
-                                  //width: 100,
-                                  height: 50.0,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(25.0),
-                                      color: Colors.lightBlue,
-                                  ),
-                                  child: Center(
-                                      child: Text('이 메뉴를 추천하였습니다.',textAlign: TextAlign.center,),
-                                  )
-                              ),
 
-
-                              backgroundColor: Colors.white,
-
-                        )
-                        );
+                        jmtToast("이 메뉴를 추천하였습니다.");
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //      SnackBar(
+                        //       duration: Duration(seconds: 1),
+                        //       content:Container(
+                        //           //width: 100,
+                        //           height: 50.0,
+                        //           decoration: BoxDecoration(
+                        //               borderRadius: BorderRadius.circular(25.0),
+                        //               color: Colors.lightBlue,
+                        //           ),
+                        //           child: Center(
+                        //               child: Text('이 메뉴를 추천하였습니다.',textAlign: TextAlign.center,),
+                        //           )
+                        //       ),
+                        //
+                        //
+                        //       backgroundColor: Colors.white,
+                        //
+                        // )
+                        // );
                         // AlertDialog(
                         //     shape: RoundedRectangleBorder(
                         //       //팝업창에 radius를 주기위한 옵션
@@ -313,13 +316,67 @@ class _CookieDetailState extends State<CookieDetail> {
                     Center(
                         child: Row(
                           children: [
-                            Text('  '),
-                            Icon(Icons.phone,color: Colors.black,),
-                            Text(' 연 락 처 : 041)630-1894',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    //fontFamily: 'Varela',
-                                    fontSize: 25.0)),
+                            InkWell(
+                              onTap: (){
+
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context){
+                                      return AlertDialog(
+                                        //titleTextStyle: TextStyle(fontSize: 25),
+                                        title: Text('해당 연락처로 통화하시겠습니까?',
+                                            style: TextStyle(
+                                              //color: Color(0xFF575E67),
+                                              //fontFamily: 'Varela',
+                                                fontSize: 26.0)),
+
+                                        actions: [
+                                          TextButton(
+                                            child: Text('취    소',
+                                                style: TextStyle(
+                                                  //color: Color(0xFF575E67),
+                                                  //fontFamily: 'Varela',
+                                                    fontSize: 30.0)),
+                                            onPressed: (){
+                                              Navigator.pop(context);
+                                            },
+                                          ),
+                                          ElevatedButton(
+                                            child: Text('전화걸기',
+                                                style: TextStyle(
+                                                  //color: Color(0xFF575E67),
+                                                  //fontFamily: 'Varela',
+                                                    fontSize: 35.0)),
+                                            onPressed: (){
+
+                                              FlutterPhoneDirectCaller.callNumber('0416301894');
+
+
+                                              Navigator.pop(context);
+
+
+
+                                            },)
+                                        ],
+                                      );
+                                    }
+                                );
+
+                                //FlutterPhoneDirectCaller.callNumber('0416301894');
+                              },
+                              child: Row(
+                                children: [
+                                  Text('  '),
+                                  Icon(Icons.phone,color: Colors.black,),
+                                  Text(' 연 락 처 : 041)630-1894',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          //fontFamily: 'Varela',
+                                          fontSize: 25.0)),
+                                ],
+                              ),
+                            ),
                           ],
                         )
                     ),
@@ -401,6 +458,7 @@ class _CookieDetailState extends State<CookieDetail> {
 
                   ListView.builder(   //또 다른 맛집 리스트
                     scrollDirection: Axis.vertical,
+                    physics : ClampingScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: 3, //animalData.length,
                     itemBuilder: (context, index) {
@@ -449,26 +507,28 @@ class _CookieDetailState extends State<CookieDetail> {
                             InkWell(
                               onTap: (){
 
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      duration: Duration(seconds: 1),
-                                      content:Container(
-                                        //width: 100,
-                                          height: 50.0,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(25.0),
-                                            color: Colors.pinkAccent,
-                                          ),
-                                          child: Center(
-                                            child: Text('이 맛집을 추천하였습니다.',textAlign: TextAlign.center,),
-                                          )
-                                      ),
+                                jmtToast("이 맛집을 추천하였습니다.");
 
-
-                                      backgroundColor: Colors.white,
-
-                                    )
-                                );
+                                // ScaffoldMessenger.of(context).showSnackBar(
+                                //     SnackBar(
+                                //       duration: Duration(seconds: 1),
+                                //       content:Container(
+                                //         //width: 100,
+                                //           height: 50.0,
+                                //           decoration: BoxDecoration(
+                                //             borderRadius: BorderRadius.circular(25.0),
+                                //             color: Colors.pinkAccent,
+                                //           ),
+                                //           child: Center(
+                                //             child: Text('이 맛집을 추천하였습니다.',textAlign: TextAlign.center,),
+                                //           )
+                                //       ),
+                                //
+                                //
+                                //       backgroundColor: Colors.white,
+                                //
+                                //     )
+                                // );
 
                                 setState(() {
                                   ajmt_like[index]++;
@@ -508,9 +568,14 @@ class _CookieDetailState extends State<CookieDetail> {
 
             MaterialButton(
 
+
               onPressed: (){
+                TextEditingController txt_location=TextEditingController();
+                TextEditingController txt_shopname=TextEditingController();
+
 
                 showDialog(
+                    barrierDismissible: false,
                     context: context,
                     builder: (BuildContext context){
                       return AlertDialog(
@@ -519,7 +584,7 @@ class _CookieDetailState extends State<CookieDetail> {
                             style: TextStyle(
                             //color: Color(0xFF575E67),
                             //fontFamily: 'Varela',
-                            fontSize: 28.0)),
+                            fontSize: 26.0)),
                         content: SingleChildScrollView(
                           child: Column(
                             children: [
@@ -533,6 +598,7 @@ class _CookieDetailState extends State<CookieDetail> {
                                   border: OutlineInputBorder(),
                                   hintStyle: TextStyle(fontSize: 22),
                                   labelStyle: TextStyle(fontSize: 22),
+                                  contentPadding: EdgeInsets.symmetric(vertical: 5),
                                 ),
                                 onChanged: (value){
                                   setState(() {
@@ -552,6 +618,7 @@ class _CookieDetailState extends State<CookieDetail> {
                                   border: OutlineInputBorder(),
                                   //hintStyle: TextStyle(fontSize: 25),
                                   labelStyle: TextStyle(fontSize: 22),
+                                  contentPadding: EdgeInsets.symmetric(vertical: 5),
                                 ),
                                 onChanged: (value){
                                   setState(() {
@@ -587,6 +654,10 @@ class _CookieDetailState extends State<CookieDetail> {
                               "jmt_shopame" : widget.jmt_shopname,
                             });
 
+                            jmtToast('추천하였습니다. 관리자 확인후 등록예정');
+
+                            Navigator.pop(context);
+
 
 
                           },)
@@ -619,7 +690,7 @@ class _CookieDetailState extends State<CookieDetail> {
 
               ),
 
-            ),
+            ),//맛집등록
 
             SizedBox(height: 150,)
           ]
@@ -646,3 +717,15 @@ class _CookieDetailState extends State<CookieDetail> {
     );
   }
 }
+
+void jmtToast(String jmt_message) {
+  Fluttertoast.showToast(msg: jmt_message,
+  gravity: ToastGravity.CENTER,
+    backgroundColor: Colors.black,
+    fontSize: 20.0,
+    textColor: Colors.white,
+    timeInSecForIosWeb: 1,
+    toastLength: Toast.LENGTH_SHORT,
+
+  );
+} //토스트메시지 띄우기
