@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hsjmt001/mainpages/GetxController.dart';
 import 'package:hsjmt001/mainpages/cookie_page.dart';
+
+
 
 class HomeMenu extends StatefulWidget {
   const HomeMenu({Key? key}) : super(key: key);
@@ -42,6 +45,8 @@ class _HomeMenuState extends State<HomeMenu> {
       GestureDetector(
         onTap: (){
           //Get.to(TestPage());
+         // Get.find<BuilderController>().menu_update('해장국');
+          Get.find<BuilderController>().home_menu.value='해장국';
           Get.to(() => CookiePage());
         },
         child: Column(

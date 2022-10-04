@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'bottom_bar.dart';
 import 'cookie_page.dart';
-
+import 'GetxController.dart';
 
 class CookieHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final controller = Get.put(BuilderController());
+
     return Scaffold(
 
       appBar: AppBar(
@@ -58,6 +61,7 @@ class CookieHome extends StatelessWidget {
                   GestureDetector(
                       onTap: () {
                         //Get.to(TestPage());
+                        controller.home_menu.value='해장국';
                         Get.to(() => CookiePage());
                       },
                       child: Column(

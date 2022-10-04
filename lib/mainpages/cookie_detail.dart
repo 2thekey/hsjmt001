@@ -105,7 +105,7 @@ class _CookieDetailState extends State<CookieDetail> {
 
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image.network(widget.assetPath,fit: BoxFit.cover,),
+                      child: Image.network(widget.assetPath,fit: BoxFit.fitWidth),
                     ),
                   ),
                   // Container(

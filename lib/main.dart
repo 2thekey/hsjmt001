@@ -12,6 +12,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 bool isFirebaseReady = true;
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().catchError((e) {
