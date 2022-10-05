@@ -25,11 +25,13 @@ class CookiePage extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        title:
-        Obx((){
-          return  Text('${controller.home_menu.value}',
-            style: TextStyle(fontSize: 30,color: Colors.black),  );
-        }),
+        title:Text(jmt_menu,
+          style: TextStyle(fontSize: 30,color: Colors.black),  ),
+
+        // Obx((){
+        //   return  Text('${controller.home_menu.value}',
+        //     style: TextStyle(fontSize: 30,color: Colors.black),  );
+        // }),
 
         actions: <Widget>[
           IconButton(
@@ -50,47 +52,47 @@ class CookiePage extends StatelessWidget {
           if(streamSnapshot.hasData){
             final Document = streamSnapshot.data!.docs;
             final DocumentSnapshot documentSnapshot=streamSnapshot.data!.docs[1];
-            print(documentSnapshot['jmt_name'].toString());
+            //print(documentSnapshot['jmt_name'].toString());
 
-            return ListView(
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: GridView.count(
+                        crossAxisCount: 2,
+                        primary: false,
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 10.0,
+                        childAspectRatio: 0.8,
 
-              children: <Widget>[
-                SizedBox(height: 15.0),
-                Container(
-
-                    padding: EdgeInsets.only(right: 15.0),
-                    width: MediaQuery.of(context).size.width - 30.0,
-                    height: MediaQuery.of(context).size.height - 50.0,
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      primary: false,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 10.0,
-                      childAspectRatio: 0.8,
-                      children: <Widget>[
+                        children: List.generate(Document.length, (index) {
+                          //_buildCard(Document[0]['jmt_name'], '\￦'+documentSnapshot['jmt_price'], documentSnapshot['jmt_image'], false, false, context);
+                          return _buildCard(Document[index]['jmt_name'], '\￦'+Document[index]['jmt_price'], Document[index]['jmt_image'], false, false, context);
+                        }
 
 
-                        _buildCard(documentSnapshot['jmt_name'], '\￦'+documentSnapshot['jmt_price'], documentSnapshot['jmt_image'],
-                            false, false, context),
-                        //  _buildCard('간장게장', '\￦7,000', 'https://postfiles.pstatic.net/MjAyMjA0MjZfMTMz/MDAxNjUwOTQ2NTg2Mjgy.9E2F-zPX9ScWD0HUa7YXNz3VwHRz3qixq1pncOGG488g.HaxkBc1hFjerIDvBselpA_W-g-hreP5Ws0FmXJ9ZFusg.JPEG.2thekey/IMG_7091.jpg?type=w966',
-                        //      true, false, context),
-                        //  _buildCard('바다송어회', '\￦10,000','https://postfiles.pstatic.net/MjAyMjA0MTFfMjQ4/MDAxNjQ5NjY0NTA0MTU3.dGK7DLJh605itz-P23Lg650hlEM4uhNb619rcUg1gfsg.J1omDiPguQQ_RzL9VpbLe-OqPLTkHjFAEVU4MgRDwvIg.JPEG.2thekey/IMG_6962.jpg?type=w966',
-                        //      false, true, context),
-                        // _buildCard('고야커피', '\￦8,000', 'https://postfiles.pstatic.net/MjAyMjA0MThfNjEg/MDAxNjUwMjU5ODY2MTky.3Lnz3g8ssyQIboDRkPE0oH-rT1M_CQmTzprr5wlkUnIg.gtP3TZXiTWdWlaFtb1kPYqNfLRZPXUbDPgqwJAco9h4g.JPEG.2thekey/IMG_5616.JPG?type=w966',
-                        //     false, false, context),
-                        // _buildCard('내장수육', '\￦6,000', 'https://recipe1.ezmember.co.kr/cache/rpt/2019/10/11/412cb0133ea7338ee3e51498bf1d5859.jpg.jpeg',
-                        //     false, false, context),
-                        // _buildCard('내장수육', '\￦6,000', 'https://recipe1.ezmember.co.kr/cache/rpt/2019/10/11/412cb0133ea7338ee3e51498bf1d5859.jpg.jpeg',
-                        //     false, false, context),
-                        SizedBox(),  //상품이 홀수 일때 그리드뷰 빈자리 채우기 필요
-                        SizedBox()
-                      ],
-                    )
-                ),
-                SizedBox(height: 15.0)
-              ],
-
-            );
+                        // children: <Widget>[
+                        //
+                        //   _buildCard(documentSnapshot['jmt_name'], '\￦'+documentSnapshot['jmt_price'], documentSnapshot['jmt_image'],
+                        //       false, false, context),
+                        //   //  _buildCard('간장게장', '\￦7,000', 'https://postfiles.pstatic.net/MjAyMjA0MjZfMTMz/MDAxNjUwOTQ2NTg2Mjgy.9E2F-zPX9ScWD0HUa7YXNz3VwHRz3qixq1pncOGG488g.HaxkBc1hFjerIDvBselpA_W-g-hreP5Ws0FmXJ9ZFusg.JPEG.2thekey/IMG_7091.jpg?type=w966',
+                        //   //      true, false, context),
+                        //   //  _buildCard('바다송어회', '\￦10,000','https://postfiles.pstatic.net/MjAyMjA0MTFfMjQ4/MDAxNjQ5NjY0NTA0MTU3.dGK7DLJh605itz-P23Lg650hlEM4uhNb619rcUg1gfsg.J1omDiPguQQ_RzL9VpbLe-OqPLTkHjFAEVU4MgRDwvIg.JPEG.2thekey/IMG_6962.jpg?type=w966',
+                        //   //      false, true, context),
+                        //   // _buildCard('고야커피', '\￦8,000', 'https://postfiles.pstatic.net/MjAyMjA0MThfNjEg/MDAxNjUwMjU5ODY2MTky.3Lnz3g8ssyQIboDRkPE0oH-rT1M_CQmTzprr5wlkUnIg.gtP3TZXiTWdWlaFtb1kPYqNfLRZPXUbDPgqwJAco9h4g.JPEG.2thekey/IMG_5616.JPG?type=w966',
+                        //   //     false, false, context),
+                        //   // _buildCard('내장수육', '\￦6,000', 'https://recipe1.ezmember.co.kr/cache/rpt/2019/10/11/412cb0133ea7338ee3e51498bf1d5859.jpg.jpeg',
+                        //   //     false, false, context),
+                        //   // _buildCard('내장수육', '\￦6,000', 'https://recipe1.ezmember.co.kr/cache/rpt/2019/10/11/412cb0133ea7338ee3e51498bf1d5859.jpg.jpeg',
+                        //   //     false, false, context),
+                        //   SizedBox(),  //상품이 홀수 일때 그리드뷰 빈자리 채우기 필요
+                        //   SizedBox()
+                        // ],
+                      ),
+            )
+                 );
+            //     SizedBox(height: 15.0)
+            //   ],
+            //
+            // );
 
           }
 
@@ -121,7 +123,7 @@ class CookiePage extends StatelessWidget {
   Widget _buildCard(String name, String price, String imgPath, bool added,
       bool isFavorite, context) {
     return Padding(
-        padding: EdgeInsets.only(top: 0.5, bottom: 0.5, left: 0.5, right: 0.5),
+        padding: EdgeInsets.only(top: 5.5, bottom: 0.5, left: 0.5, right: 0.5),
         child: InkWell(
             onTap: () {
 
@@ -167,18 +169,23 @@ class CookiePage extends StatelessWidget {
                   //               : Icon(Icons.favorite_border,
                   //               color: Color(0xFFEF7532))
                   //         ])),
-                  Hero(
-                      tag: imgPath,
-                      child: Container(
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Hero(
+                        tag: imgPath,
+                        child: Container(
 
-                          height: 120.0,
-                          width: 150.0,
-                          decoration: BoxDecoration(
-                            //color: Colors.red,
-                              image: DecorationImage(
-                                  image: NetworkImage(imgPath),
-                                  fit: BoxFit.fitWidth)
-                          ))),
+                            height: 120.0,
+                            width: 150.0,
+
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15.0),
+                              //color: Colors.red,
+                                image: DecorationImage(
+                                    image: NetworkImage(imgPath),
+                                    fit: BoxFit.fitWidth)
+                            ))),
+                  ),
                   //SizedBox(height: 7.0),
 
 

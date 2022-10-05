@@ -4,6 +4,8 @@ import 'bottom_bar.dart';
 import 'cookie_page.dart';
 import 'GetxController.dart';
 
+var jmt_menu='전체';
+
 class CookieHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,8 @@ class CookieHome extends StatelessWidget {
                   GestureDetector(
                       onTap: () {
                         //Get.to(TestPage());
-                        controller.home_menu.value='해장국';
+                        //controller.home_menu.value='해장국';
+                        jmt_menu='해장국';
                         Get.to(() => CookiePage());
                       },
                       child: Column(
