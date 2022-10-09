@@ -1,12 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hsjmt001/mainpages/makepostpage.dart';
+import 'package:hsjmt001/mainpages/showgridscreen.dart';
 import 'bottom_bar.dart';
+import 'bottom_bar_main.dart';
 import 'cookie_page.dart';
 import 'GetxController.dart';
+import 'homemenu.dart';
+import 'homescreen.dart';
+import 'mylikescreen.dart';
 
-var jmt_menu='전체';
 
-class CookieHome extends StatelessWidget {
+
+class CookieHome extends StatefulWidget {
+
+  @override
+  State<CookieHome> createState() => _CookieHomeState();
+}
+
+class _CookieHomeState extends State<CookieHome> {
+  int _selectedIndex=0;
+
+  List pages=[
+    const HomeMenu(),
+   // const HomeScreen(),
+    const MakePostPage(),
+    const ShowGridScreen(),
+    const MyLikeScreen(),
+
+  ];
+
+  List<BottomNavigationBarItem> bottomItems=[
+    const BottomNavigationBarItem(
+      label: '홈',
+      icon: Icon(Icons.home),
+    ),
+
+    const BottomNavigationBarItem(
+      label: '홍성소식',
+      icon: Icon(Icons.search),
+    ),
+
+    const BottomNavigationBarItem(
+      label: '홍성JMT?',
+      icon: Icon(Icons.maps_ugc),
+    ),
+
+    const BottomNavigationBarItem(
+      label: '고객센터',
+      icon: Icon(Icons.folder_copy),
+    ),
+
+
+  ];
+
   @override
   Widget build(BuildContext context) {
 
@@ -32,129 +79,7 @@ class CookieHome extends StatelessWidget {
       ),
 
 
-      body: Container(
-          color: Colors.black12,
 
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Text("#닥치고 한 끼 추천",
-                        style: TextStyle(
-                            color: Colors.redAccent, fontSize: 30),),
-                    ],
-
-                  ),
-
-                  // Column(
-                  //   children: [
-                  //     Text("#해장 필요해?",
-                  //       style: TextStyle(color: Colors.lightBlue, fontSize: 30),),
-                  //   ],
-                  //
-                  // ),
-
-                  GestureDetector(
-                      onTap: () {
-                        //Get.to(TestPage());
-                        //controller.home_menu.value='해장국';
-                        jmt_menu='해장국';
-                        Get.to(() => CookiePage());
-                      },
-                      child: Column(
-                        children: [
-                          Text("#해장 필요해?",
-                            style: TextStyle(
-                                color: Colors.lightBlue, fontSize: 30),),
-                        ],
-                      )
-
-                  ),
-
-                ],
-              ),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Text("#면치기 해볼래?",
-                        style: TextStyle(
-                            color: Colors.lightGreen, fontSize: 30),),
-                    ],
-
-                  ),
-
-                  Column(
-                    children: [
-                      Text("#오늘은 고기앞",
-                        style: TextStyle(color: Colors.purple, fontSize: 30),),
-                    ],
-
-                  ),
-                ],
-              ),
-
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Text("#육지로 온 해산물",
-                        style: TextStyle(color: Colors.black, fontSize: 30),),
-                    ],
-
-                  ),
-
-                  Column(
-                    children: [
-                      Text("#내안에도 내장 있다",
-                        style: TextStyle(color: Colors.green, fontSize: 30),),
-                    ],
-
-                  ),
-                ],
-              ),
-
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      Text("#밥이 보약",
-                        style: TextStyle(
-                            color: Colors.deepOrange, fontSize: 30),),
-                    ],
-
-                  ),
-
-                  Column(
-                    children: [
-                      Text("#마데 인 차이나",
-                        style: TextStyle(
-                            color: Colors.blueGrey, fontSize: 30),),
-                    ],
-
-                  ),
-                ],
-              ),
-
-
-            ],
-          )
-      ),
 
 
       //하단플로팅 버튼 시작
@@ -165,11 +90,28 @@ class CookieHome extends StatelessWidget {
       //   backgroundColor: Color(0xFFEF7532),
       //   child: Icon(Icons.home),
       // ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      bottomNavigationBar: BottomBar(),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      bottomNavigationBar:BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.orange,
+        unselectedItemColor: Colors.grey.withOpacity(.60),
+        selectedFontSize: 22,
+        unselectedFontSize: 13,
+        currentIndex: _selectedIndex,
 
-      //하단플로팅 버튼 끝
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
 
+        onTap: (int index){
+          setState(() {
+            _selectedIndex=index;
+          });
+        },
+        items: bottomItems,
+      ),
+
+      body: pages[_selectedIndex],
     );
   }
 }

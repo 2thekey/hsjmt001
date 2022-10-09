@@ -14,7 +14,7 @@ class CookiePage extends StatelessWidget {
   final controller = Get.put(BuilderController());
 
 
-  final product=FirebaseFirestore.instance.collection('해장국');
+  final product=FirebaseFirestore.instance.collection('hs_jmt');
 
   @override
 
@@ -50,8 +50,9 @@ class CookiePage extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> streamSnapshot)
         {
           if(streamSnapshot.hasData){
-            final Document = streamSnapshot.data!.docs;
-            final DocumentSnapshot documentSnapshot=streamSnapshot.data!.docs[1];
+            final Document = streamSnapshot.data!.docs; //.where("jmt_name", "==", "홍흥집");
+            //final jmt_doc=Document.map((i) => i).toList();
+            //final DocumentSnapshot documentSnapshot=streamSnapshot.data!.docs[1];
             //print(documentSnapshot['jmt_name'].toString());
 
             return Padding(
@@ -63,10 +64,25 @@ class CookiePage extends StatelessWidget {
                         mainAxisSpacing: 10.0,
                         childAspectRatio: 0.8,
 
-                        children: List.generate(Document.length, (index) {
-                          //_buildCard(Document[0]['jmt_name'], '\￦'+documentSnapshot['jmt_price'], documentSnapshot['jmt_image'], false, false, context);
-                          return _buildCard(Document[index]['jmt_name'], '\￦'+Document[index]['jmt_price'], Document[index]['jmt_image'], false, false, context);
-                        }
+                        children:
+
+
+
+                        List.generate(Document.length, (index) {
+
+
+                          if(Document[index]['jmt_gubun']=="해장국"){
+
+                          return
+                          //Text(Document[index].reference.id.toString());
+                            _buildCard(Document[index]['jmt_name'], '\￦'+Document[index]['jmt_price'], Document[index]['jmt_image'], Document[index].reference.id.toString(),context);
+                          }
+
+                          return Center();
+
+
+
+            }
 
 
                         // children: <Widget>[
@@ -87,6 +103,7 @@ class CookiePage extends StatelessWidget {
                         //   SizedBox()
                         // ],
                       ),
+
             )
                  );
             //     SizedBox(height: 15.0)
@@ -120,119 +137,120 @@ class CookiePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard(String name, String price, String imgPath, bool added,
-      bool isFavorite, context) {
-    return Padding(
+  Widget _buildCard(String name, String price, String imgPath, String jmt_id, context) {
+        return Padding(
         padding: EdgeInsets.only(top: 5.5, bottom: 0.5, left: 0.5, right: 0.5),
         child: InkWell(
-            onTap: () {
+          onTap: () {
 
-             // Get.to(() => CookieDetail(imgPath,price,name));
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => CookieDetail(
-                      assetPath: imgPath,
-                      cookieprice:price,
-                      cookiename: name
-                  )));
+            // Get.to(() => CookieDetail(imgPath,price,name));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => CookieDetail(
+                    assetPath: imgPath,
+                    cookieprice:price,
+                    cookiename: name,
+                    cookieid: jmt_id
+                )));
 
-              // Navigator.of(context).push(
-              //     MaterialPageRoute(builder: (context) => CookieDetail(
-              //         assetPath: imgPath,
-              //         cookieprice:price,
-              //         cookiename: name
-              //     )));
-            },
-            child: Container(
-//height: 600,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    boxShadow: [
-                      BoxShadow(
-                          //color: Colors.grey.withOpacity(0.2),
-                          color: Colors.red.withOpacity(0.2),
-                          spreadRadius: 3.0,
-                          blurRadius: 5.0)
-                    ],
-                    color: Colors.white),
-                child: Column(
+            // Navigator.of(context).push(
+            //     MaterialPageRoute(builder: (context) => CookieDetail(
+            //         assetPath: imgPath,
+            //         cookieprice:price,
+            //         cookiename: name
+            //     )));
+          },
+          child: Container(
 
-                    children: [
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  boxShadow: [
+                    BoxShadow(
+                      //color: Colors.grey.withOpacity(0.2),
+                        color: Colors.red.withOpacity(0.2),
+                        spreadRadius: 3.0,
+                        blurRadius: 5.0)
+                  ],
+                  color: Colors.white60),
+              child: Column(
 
-
-                  // Padding(
-                  //     padding: EdgeInsets.all(5.0),
-                  //     child: Row(
-                  //         mainAxisAlignment: MainAxisAlignment.end,
-                  //         children: [
-                  //           isFavorite
-                  //               ? Icon(Icons.favorite, color: Color(0xFFEF7532))
-                  //               : Icon(Icons.favorite_border,
-                  //               color: Color(0xFFEF7532))
-                  //         ])),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Hero(
-                        tag: imgPath,
-                        child: Container(
-
-                            height: 120.0,
-                            width: 150.0,
-
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15.0),
-                              //color: Colors.red,
-                                image: DecorationImage(
-                                    image: NetworkImage(imgPath),
-                                    fit: BoxFit.fitWidth)
-                            ))),
-                  ),
-                  //SizedBox(height: 7.0),
+                  children: [
 
 
+                    // Padding(
+                    //     padding: EdgeInsets.all(5.0),
+                    //     child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.end,
+                    //         children: [
+                    //           isFavorite
+                    //               ? Icon(Icons.favorite, color: Color(0xFFEF7532))
+                    //               : Icon(Icons.favorite_border,
+                    //               color: Color(0xFFEF7532))
+                    //         ])),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Hero(
+                          tag: imgPath,
+                          child: Container(
 
-                      Text(price,
-                      style: TextStyle(
-                          color: Color(0xFFCC8053),
-                          //fontFamily: 'DongleRegular',
-                          fontSize: 25.0)),
-                  Text(name,
-                      style: TextStyle(
-                          color: Color(0xFF575E67),
-                          fontFamily: 'DongleRegular',
-                          fontSize: 25.0)),
-                  // Padding(
-                  //     padding: EdgeInsets.all(8.0),
-                  //     child: Container(color: Color(0xFFEBEBEB), height: 1.0)),
-                  // Padding(
-                  //     padding: EdgeInsets.only(left: 5.0, right: 5.0),
-                  //     child: Row(
-                  //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //         children: [
-                  //           if (!added) ...[
-                  //             Icon(Icons.shopping_basket,
-                  //                 color: Color(0xFFD17E50), size: 12.0),
-                  //             Text('Add to cart',
-                  //                 style: TextStyle(
-                  //                     fontFamily: 'Varela',
-                  //                     color: Color(0xFFD17E50),
-                  //                     fontSize: 12.0))
-                  //           ],
-                  //           if (added) ...[
-                  //             Icon(Icons.remove_circle_outline,
-                  //                 color: Color(0xFFD17E50), size: 12.0),
-                  //             Text('3',
-                  //                 style: TextStyle(
-                  //                     fontFamily: 'Varela',
-                  //                     color: Color(0xFFD17E50),
-                  //                     fontWeight: FontWeight.bold,
-                  //                     fontSize: 12.0)),
-                  //             Icon(Icons.add_circle_outline,
-                  //                 color: Color(0xFFD17E50), size: 12.0),
-                  //           ]
-                  //         ]))
-                ]
-                )
-            ),
+                              height: 120.0,
+                              width: 150.0,
+
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                  //color: Colors.red,
+                                  image: DecorationImage(
+                                      image: NetworkImage(imgPath),
+                                      fit: BoxFit.fitWidth)
+                              ))),
+                    ),
+                    //SizedBox(height: 7.0),
+
+
+
+                    Text(price,
+                        style: TextStyle(
+                            color: Color(0xFFCC8053),
+                            //fontFamily: 'DongleRegular',
+                            fontSize: 25.0)),
+                    Text(name,
+                        style: TextStyle(
+                            color: Color(0xFF575E67),
+                            fontFamily: 'DongleRegular',
+                            fontSize: 25.0)),
+
+                    // Padding(
+                    //     padding: EdgeInsets.all(8.0),
+                    //     child: Container(color: Color(0xFFEBEBEB), height: 1.0)),
+                    // Padding(
+                    //     padding: EdgeInsets.only(left: 5.0, right: 5.0),
+                    //     child: Row(
+                    //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //         children: [
+                    //           if (!added) ...[
+                    //             Icon(Icons.shopping_basket,
+                    //                 color: Color(0xFFD17E50), size: 12.0),
+                    //             Text('Add to cart',
+                    //                 style: TextStyle(
+                    //                     fontFamily: 'Varela',
+                    //                     color: Color(0xFFD17E50),
+                    //                     fontSize: 12.0))
+                    //           ],
+                    //           if (added) ...[
+                    //             Icon(Icons.remove_circle_outline,
+                    //                 color: Color(0xFFD17E50), size: 12.0),
+                    //             Text('3',
+                    //                 style: TextStyle(
+                    //                     fontFamily: 'Varela',
+                    //                     color: Color(0xFFD17E50),
+                    //                     fontWeight: FontWeight.bold,
+                    //                     fontSize: 12.0)),
+                    //             Icon(Icons.add_circle_outline,
+                    //                 color: Color(0xFFD17E50), size: 12.0),
+                    //           ]
+                    //         ]))
+                  ]
+              )
+          ),
 
         )
     );
