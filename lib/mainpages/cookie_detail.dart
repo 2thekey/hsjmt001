@@ -5,7 +5,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:hsjmt001/mainpages/cookie_home.dart';
 
-import '../mainpage.dart';
 import 'bottom_bar.dart';
 
 FirebaseFirestore firestore=FirebaseFirestore.instance;
