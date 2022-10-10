@@ -25,7 +25,7 @@ class CookiePage extends StatelessWidget {
     return Scaffold(
 
       appBar: AppBar(
-        title:Text(jmt_menu,
+        title:Text(menu_jmt,
           style: TextStyle(fontSize: 30,color: Colors.black),  ),
 
         // Obx((){
@@ -46,7 +46,7 @@ class CookiePage extends StatelessWidget {
 
 
       body: StreamBuilder(
-        stream: product.snapshots(),
+        stream: product.where("jmt_gubun", isEqualTo: gubun_jmt).snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> streamSnapshot)
         {
           if(streamSnapshot.hasData){
@@ -71,11 +71,24 @@ class CookiePage extends StatelessWidget {
                         List.generate(Document.length, (index) {
 
 
-                          if(Document[index]['jmt_gubun']=="해장국"){
+                          if(Document[index]['jmt_gubun']==gubun_jmt){
 
                           return
-                          //Text(Document[index].reference.id.toString());
-                            _buildCard(Document[index]['jmt_name'], '\￦'+Document[index]['jmt_price'], Document[index]['jmt_image'], Document[index].reference.id.toString(),context);
+                             _buildCard(
+                                 Document[index]['jmt_gubun'],
+                                 Document[index]['jmt_hanjul'],
+                                 Document[index]['jmt_image'],
+                                 Document[index]['jmt_joayo'],
+                                 Document[index]['jmt_location'],
+                                 Document[index]['jmt_main'],
+                                 Document[index]['jmt_name'],
+                                 Document[index]['jmt_price'],
+                                 Document[index]['jmt_tel1'],
+                                 Document[index]['jmt_time'],
+                                 Document[index]['jmt_time2'],
+                                 Document[index]['jmt_tv'],
+                                 Document[index].reference.id.toString(),
+                                 context);
                           }
 
                           return Center();
@@ -137,19 +150,31 @@ class CookiePage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard(String name, String price, String imgPath, String jmt_id, context) {
+
+
+  Widget _buildCard(String gubun_jmt, String hanjul_jmt, String image_jmt, int joayo_jmt, String location_jmt, String main_jmt,
+      String name_jmt, String price_jmt, String tel1_jmt, String time_jmt,String time2_jmt,String tv_jmt,String id_jmt, context) {
         return Padding(
         padding: EdgeInsets.only(top: 5.5, bottom: 0.5, left: 0.5, right: 0.5),
         child: InkWell(
           onTap: () {
 
-            // Get.to(() => CookieDetail(imgPath,price,name));
+            // Get.to(() => CookieDetail(), arguments: jmt_id);
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => CookieDetail(
-                    assetPath: imgPath,
-                    cookieprice:price,
-                    cookiename: name,
-                    cookieid: jmt_id
+                    gubun_jmt: gubun_jmt,
+                    hanjul_jmt:hanjul_jmt,
+                    image_jmt:image_jmt,
+                    joayo_jmt: joayo_jmt,
+                    location_jmt: location_jmt,
+                    main_jmt:main_jmt,
+                    name_jmt:name_jmt,
+                    price_jmt:price_jmt,
+                    tel1_jmt:tel1_jmt,
+                    time_jmt:time_jmt,
+                    time2_jmt:time2_jmt,
+                    tv_jmt:tv_jmt,
+                    id_jmt:id_jmt
                 )));
 
             // Navigator.of(context).push(
@@ -189,7 +214,7 @@ class CookiePage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 10.0),
                       child: Hero(
-                          tag: imgPath,
+                          tag: image_jmt,
                           child: Container(
 
                               height: 120.0,
@@ -199,7 +224,7 @@ class CookiePage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15.0),
                                   //color: Colors.red,
                                   image: DecorationImage(
-                                      image: NetworkImage(imgPath),
+                                      image: NetworkImage(image_jmt),
                                       fit: BoxFit.fitWidth)
                               ))),
                     ),
@@ -207,12 +232,12 @@ class CookiePage extends StatelessWidget {
 
 
 
-                    Text(price,
+                    Text('\￦'+ price_jmt,
                         style: TextStyle(
                             color: Color(0xFFCC8053),
                             //fontFamily: 'DongleRegular',
                             fontSize: 25.0)),
-                    Text(name,
+                    Text(main_jmt,
                         style: TextStyle(
                             color: Color(0xFF575E67),
                             fontFamily: 'DongleRegular',

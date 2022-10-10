@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:hsjmt001/mainpages/GetxController.dart';
 import 'package:hsjmt001/mainpages/cookie_page.dart';
 
-var jmt_menu = '전체';
+var menu_jmt = '전체';
+var gubun_jmt = '모든메뉴';
 
 class HomeMenu extends StatefulWidget {
   const HomeMenu({Key? key}) : super(key: key);
@@ -46,7 +47,8 @@ class _HomeMenuState extends State<HomeMenu> {
                     onTap: () {
                       //Get.to(TestPage());
                       //controller.home_menu.value='해장국';
-                      jmt_menu = '해장 필요해?';
+                      menu_jmt = '해장 필요해?';
+                      gubun_jmt = '해장국';
                       Get.to(() => CookiePage());
                     },
                     child: Column(

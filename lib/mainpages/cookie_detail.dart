@@ -10,14 +10,18 @@ import 'bottom_bar.dart';
 
 FirebaseFirestore firestore=FirebaseFirestore.instance;
 
+var detail_db;
+
 class CookieDetail extends StatefulWidget {
-  final assetPath,cookieprice,cookiename,cookieid;
+  final gubun_jmt,hanjul_jmt,image_jmt,joayo_jmt,location_jmt,main_jmt,name_jmt,price_jmt,tel1_jmt,time_jmt,time2_jmt,tv_jmt,id_jmt;
+
 
   String jmt_location="";
   String jmt_shopname="";
 
 
-  CookieDetail({this.assetPath, this.cookieprice, this.cookiename, this.cookieid});
+  CookieDetail({this.gubun_jmt,this.hanjul_jmt,this.image_jmt,this.joayo_jmt,this.location_jmt,this.main_jmt,this.name_jmt,
+    this.price_jmt,this.tel1_jmt,this.time_jmt,this.time2_jmt,this.tv_jmt,this.id_jmt});
 
   @override
   State<CookieDetail> createState() => _CookieDetailState();
@@ -31,11 +35,23 @@ class _CookieDetailState extends State<CookieDetail> {
 
 
   @override
+
+  void initState() {
+    Future.delayed(Duration.zero,() async {
+       detail_db = await firestore.collection('hs_jmt').doc(widget.id_jmt).get();
+
+    });
+
+    super.initState();
+
+  }
+
   Widget build(BuildContext context) {
+
     return Scaffold(
 
       appBar: AppBar(
-        title:  Text(widget.cookiename,
+        title:  Text(widget.main_jmt,
           style: TextStyle(//fontFamily: 'DongleRegular',
               fontSize: 40,
               fontWeight: FontWeight.bold,
@@ -78,6 +94,7 @@ class _CookieDetailState extends State<CookieDetail> {
       // ),
 
       body: Container(
+
         //color: Colors.red.withOpacity(0.2),
         child: ListView(
 
@@ -107,7 +124,7 @@ class _CookieDetailState extends State<CookieDetail> {
 
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.network(widget.assetPath,fit: BoxFit.fitWidth),
+                        child: Image.network(widget.image_jmt,fit: BoxFit.fitWidth),
                       ),
                     ),
                     // Container(
@@ -132,7 +149,7 @@ class _CookieDetailState extends State<CookieDetail> {
                       //border: Border.all(color: Color(0xA1F17532), width: 3),
                     ),
 
-                    child: Text('"주민과 학생 모두가 인정하는 홍성읍의 오래된 맛집"',
+                    child: Text(widget.hanjul_jmt,
                         style: TextStyle(
                           //color: Color(0xFF575E67),
                           //fontFamily: 'Varela',
@@ -154,7 +171,7 @@ class _CookieDetailState extends State<CookieDetail> {
                         children: [
                           SizedBox(width: 20,),
                           Icon(Icons.favorite,color: Colors.red,),
-                          Text(' '+jmt_like.toString(),
+                          Text(' '+widget.joayo_jmt.toString(),
                               style: TextStyle(
                                 //fontFamily: 'Varela',
                                   fontSize: 30.0,
@@ -168,7 +185,7 @@ class _CookieDetailState extends State<CookieDetail> {
                     Expanded(
                       child: Row(
                         children: [
-                          Text(widget.cookieprice,
+                          Text('\￦'+widget.price_jmt,
                               style: TextStyle(
                                 //fontFamily: 'Varela',
                                   fontSize: 45.0,
@@ -292,7 +309,7 @@ class _CookieDetailState extends State<CookieDetail> {
                             children: [
                               Text('  '),
                               Icon(Icons.storefront,color: Colors.black,),
-                              Text(' 식 당 명 : 홍흥집',
+                              Text(' 식 당 명 : '+widget.name_jmt,
                                   style: TextStyle(
                                       color: Colors.black,
                                       //fontFamily: 'Varela',
@@ -306,7 +323,7 @@ class _CookieDetailState extends State<CookieDetail> {
                             children: [
                               Text('  '),
                               Icon(Icons.place,color: Colors.black,),
-                              Text(' 위     치 : 충남 홍성군 홍성읍 아문길 27',
+                              Text(' 위     치 : '+widget.location_jmt,
                                   style: TextStyle(
                                       color: Colors.black,
                                       //fontFamily: 'Varela',
@@ -352,7 +369,7 @@ class _CookieDetailState extends State<CookieDetail> {
                                                       fontSize: 35.0)),
                                               onPressed: (){
 
-                                                FlutterPhoneDirectCaller.callNumber('0416301894');
+                                                FlutterPhoneDirectCaller.callNumber(widget.tel1_jmt);
 
 
                                                 Navigator.pop(context);
@@ -371,7 +388,7 @@ class _CookieDetailState extends State<CookieDetail> {
                                   children: [
                                     Text('  '),
                                     Icon(Icons.phone,color: Colors.black,),
-                                    Text(' 연 락 처 : 041)630-1894',
+                                    Text(' 연 락 처 : '+widget.tel1_jmt,
                                         style: TextStyle(
                                             color: Colors.black,
                                             //fontFamily: 'Varela',
@@ -388,7 +405,7 @@ class _CookieDetailState extends State<CookieDetail> {
                             children: [
                               Text('  '),
                               Icon(Icons.alarm,color: Colors.black,),
-                              Text(' 영업시간 : 09 ~ 16 (재료소진시 마감)',
+                              Text(' 영업시간 : '+widget.time_jmt,
                                   style: TextStyle(
                                       color: Colors.black,
                                       //fontFamily: 'Varela',
@@ -400,7 +417,7 @@ class _CookieDetailState extends State<CookieDetail> {
                       Center(
                           child: Row(
                             children: [
-                              Text('    ※ 매주 수요일 휴무 - 단, 홍성장날(1,6일)은 정상영업',
+                              Text('    ※'+widget.time2_jmt,
                                   style: TextStyle(
                                       color: Colors.blue,
                                       //fontFamily: 'Varela',
@@ -415,7 +432,7 @@ class _CookieDetailState extends State<CookieDetail> {
                               Text('  '),
                               Icon(Icons.info_outline,color: Colors.black,),
                               Expanded(
-                                child: Text(' "허영만의 백반기행","6시내고향"',
+                                child: Text(' '+widget.tv_jmt,
                                     style: TextStyle(
                                         color: Colors.black,
                                         //fontFamily: 'Varela',
@@ -445,7 +462,7 @@ class _CookieDetailState extends State<CookieDetail> {
                               color: Color(0xFFF17532),
                           ),
                           child: Center(
-                              child: Text('이용자들이 추천한 또 다른 "'+ widget.cookiename+'" 맛집',
+                              child: Text('이용자들이 추천한 또 다른 "'+ widget.main_jmt+'" 맛집',
                                 style: TextStyle(
                                     fontFamily: 'Varela',
                                     fontSize: 14.0,
@@ -582,7 +599,7 @@ class _CookieDetailState extends State<CookieDetail> {
                       builder: (BuildContext context){
                         return AlertDialog(
                           //titleTextStyle: TextStyle(fontSize: 25),
-                          title: Text('새로운 "'+widget.cookiename+'" 맛집 등록하기',
+                          title: Text('새로운 "'+widget.main_jmt+'" 맛집 등록하기',
                               style: TextStyle(
                               //color: Color(0xFF575E67),
                               //fontFamily: 'Varela',
@@ -654,6 +671,7 @@ class _CookieDetailState extends State<CookieDetail> {
                               firestore.collection('Posts').doc().set({
                                 "jmt_location" : widget.jmt_location,
                                 "jmt_shopame" : widget.jmt_shopname,
+                                "jmt_main" : widget.main_jmt
                               });
 
                               jmtToast('저장하였습니다. 관리자 확인 후\n 등록여부를 결정하겠습니다.');
@@ -680,7 +698,7 @@ class _CookieDetailState extends State<CookieDetail> {
 
                    // Icon(Icons.add_circle_outline),
 
-                    Text('내가 아는 "'+ widget.cookiename +'" 맛집 추가하기',
+                    Text('내가 아는 "'+ widget.main_jmt +'" 맛집 추가하기',
 
                         style: TextStyle(
                             fontSize: 30.0,
