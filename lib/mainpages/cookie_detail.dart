@@ -10,17 +10,24 @@ import 'bottom_bar.dart';
 FirebaseFirestore firestore=FirebaseFirestore.instance;
 
 var detail_db;
+int like_temp=0;
 
 class CookieDetail extends StatefulWidget {
-  final gubun_jmt,hanjul_jmt,image_jmt,joayo_jmt,location_jmt,main_jmt,name_jmt,price_jmt,tel1_jmt,time_jmt,time2_jmt,tv_jmt,id_jmt;
+  var gubun_jmt,hanjul_jmt,image_jmt,joayo_jmt,location_jmt,main_jmt,name_jmt,price_jmt,tel1_jmt,time_jmt,time2_jmt,tv_jmt,id_jmt;
 
 
   String jmt_location="";
   String jmt_shopname="";
 
 
+
   CookieDetail({this.gubun_jmt,this.hanjul_jmt,this.image_jmt,this.joayo_jmt,this.location_jmt,this.main_jmt,this.name_jmt,
     this.price_jmt,this.tel1_jmt,this.time_jmt,this.time2_jmt,this.tv_jmt,this.id_jmt});
+
+  FirebaseFirestore firestore=FirebaseFirestore.instance;
+
+
+
 
   @override
   State<CookieDetail> createState() => _CookieDetailState();
@@ -28,8 +35,8 @@ class CookieDetail extends StatefulWidget {
 
 class _CookieDetailState extends State<CookieDetail> {
   //CookieDetail(assetPath, cookieprice, cookiename);
-  var jmt_like=20;
-  List ajmt_like=[50,40,30];
+
+  List ajmt_like=[50,40,30,25,21];
 
 
 
@@ -123,7 +130,7 @@ class _CookieDetailState extends State<CookieDetail> {
 
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.network(widget.image_jmt,fit: BoxFit.fitWidth),
+                        child: Image.network(widget.image_jmt,fit: BoxFit.cover),
                       ),
                     ),
                     // Container(
@@ -167,6 +174,7 @@ class _CookieDetailState extends State<CookieDetail> {
                       child: Row(
 
                         mainAxisAlignment: MainAxisAlignment.start,
+
                         children: [
                           SizedBox(width: 20,),
                           Icon(Icons.favorite,color: Colors.red,),
@@ -232,7 +240,16 @@ class _CookieDetailState extends State<CookieDetail> {
 
 
                           setState(() {
-                            jmt_like++;
+
+                           // like_temp++;
+                            widget.joayo_jmt++;
+
+                            firestore.collection('hs_jmt').doc(widget.id_jmt).update({
+
+                              "jmt_joayo" : widget.joayo_jmt,
+
+                            });
+
                           });
                         },
                         child: Row(
@@ -478,7 +495,7 @@ class _CookieDetailState extends State<CookieDetail> {
                       scrollDirection: Axis.vertical,
                       physics : ClampingScrollPhysics(),
                       shrinkWrap: true,
-                      itemCount: 3, //animalData.length,
+                      itemCount: 5,
                       itemBuilder: (context, index) {
                         return Card(
                           child: ListTile(
@@ -600,9 +617,10 @@ class _CookieDetailState extends State<CookieDetail> {
                           //titleTextStyle: TextStyle(fontSize: 25),
                           title: Text('새로운 "'+widget.main_jmt+'" 맛집 등록하기',
                               style: TextStyle(
-                              //color: Color(0xFF575E67),
-                              //fontFamily: 'Varela',
-                              fontSize: 26.0)),
+                                  fontFamily: 'Varela',
+                                  fontSize: 13.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black)),
                           content: SingleChildScrollView(
                             child: Column(
                               children: [
@@ -686,7 +704,7 @@ class _CookieDetailState extends State<CookieDetail> {
                   );
 
                 },
-                color: Color(0xFFF17532),
+                color: Colors.black,
                 shape: RoundedRectangleBorder(borderRadius:BorderRadius.circular(20.0)),
                 child:
                 Row(
@@ -697,11 +715,14 @@ class _CookieDetailState extends State<CookieDetail> {
 
                    // Icon(Icons.add_circle_outline),
 
-                    Text('내가 아는 "'+ widget.main_jmt +'" 맛집 추가하기',
+                    Text('내가 아는 "'+ widget.main_jmt +'" 맛집 추천하기',
 
                         style: TextStyle(
-                            fontSize: 30.0,
-                            color: Colors.white) ),
+                            fontFamily: 'Varela',
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white)
+                    ),
 
                     Icon(Icons.touch_app_outlined,color: Colors.yellow,size: 50,),
 

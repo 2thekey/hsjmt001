@@ -54,7 +54,9 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
+
         title: const Text('홍성JMT (맛있는 한끼면 충분해~)',
                            style: TextStyle(//fontFamily: 'DongleRegular',
                            fontSize: 30,
